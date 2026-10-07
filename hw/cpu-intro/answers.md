@@ -13,7 +13,7 @@ Time | PID 0 | PID 1 | CPU | IOs
 8 | DONE | RUN:cpu | 1 | 
 9 | DONE | RUN:cpu | 1 | 
 10 | DONE | RUN:cpu | 1 |
-- Reasoning / 理由: 因為 PID 0 一開始就去弄 I/O 卡住了（BLOCKED），系統很聰明，馬上把 CPU 切換給 PID 1 用。等 PID 1 跑完 4 個 CPU 指令，PID 0 的 I/O 也剛好快結束了。這樣重疊執行（Overlap）省了很多時間，總共只要 7 個 tick 就跑完。
+- Reasoning / 理由: 两个进程都只有 CPU 指令（100% CPU），完全没有 I/O 操作。因此，PID 0 会先连续执行 5 个 tick 直到结束，期间 PID 1 处于 READY 状态。接着 PID 1 再执行 5 个 tick。因为没有任何 I/O 等待，CPU 会一直处于忙碌状态，不会闲置。
 
 - Verified result / 驗證結果: Total Time 10, CPU Busy 10 (100.00%)
 - Analysis / 分析: 預測完全正確。因為只有 CPU 指令，沒有 I/O 阻塞，CPU 全程保持忙碌狀態，總時間就是兩個進程指令數的總和。
