@@ -1,0 +1,2 @@
+Chapter 7 CPU Scheduling Assignment
+This folder contains the simulation data and analysis for FIFO, SJF, and Round-Robin (RR) scheduling algorithms. All raw simulator outputs are stored in the data/ directory, and detailed answers to Q1-Q7 are in analysis.md.
