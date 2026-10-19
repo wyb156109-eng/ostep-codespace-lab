@@ -1,0 +1,54 @@
+@wyb156109-eng ➜ /workspaces/ostep-codespace-lab/ext/ostep-homework (afb36ca) $ cd vm-mechanism
+@wyb156109-eng ➜ .../ostep-codespace-lab/ext/ostep-homework/vm-mechanism (afb36ca) $ python relocation.py -s 0 -c
+
+ARG seed 0
+ARG address space size 1k
+ARG phys mem size 16k
+
+Base-and-Bounds register information:
+
+  Base   : 0x00003082 (decimal 12418)
+  Limit  : 472
+
+Virtual Address Trace
+  VA  0: 0x000001ae (decimal:  430) --> VALID: 0x00003230 (decimal: 12848)
+  VA  1: 0x00000109 (decimal:  265) --> VALID: 0x0000318b (decimal: 12683)
+  VA  2: 0x0000020b (decimal:  523) --> SEGMENTATION VIOLATION
+  VA  3: 0x0000019e (decimal:  414) --> VALID: 0x00003220 (decimal: 12832)
+  VA  4: 0x00000322 (decimal:  802) --> SEGMENTATION VIOLATION
+
+@wyb156109-eng ➜ .../ostep-codespace-lab/ext/ostep-homework/vm-mechanism (afb36ca) $ python relocation.py -s 1 -c
+
+ARG seed 1
+ARG address space size 1k
+ARG phys mem size 16k
+
+Base-and-Bounds register information:
+
+  Base   : 0x0000363c (decimal 13884)
+  Limit  : 290
+
+Virtual Address Trace
+  VA  0: 0x0000030e (decimal:  782) --> SEGMENTATION VIOLATION
+  VA  1: 0x00000105 (decimal:  261) --> VALID: 0x00003741 (decimal: 14145)
+  VA  2: 0x000001fb (decimal:  507) --> SEGMENTATION VIOLATION
+  VA  3: 0x000001cc (decimal:  460) --> SEGMENTATION VIOLATION
+  VA  4: 0x0000029b (decimal:  667) --> SEGMENTATION VIOLATION
+
+@wyb156109-eng ➜ .../ostep-codespace-lab/ext/ostep-homework/vm-mechanism (afb36ca) $ python relocation.py -s 2 -c
+
+ARG seed 2
+ARG address space size 1k
+ARG phys mem size 16k
+
+Base-and-Bounds register information:
+
+  Base   : 0x00003ca9 (decimal 15529)
+  Limit  : 500
+
+Virtual Address Trace
+  VA  0: 0x00000039 (decimal:   57) --> VALID: 0x00003ce2 (decimal: 15586)
+  VA  1: 0x00000056 (decimal:   86) --> VALID: 0x00003cff (decimal: 15615)
+  VA  2: 0x00000357 (decimal:  855) --> SEGMENTATION VIOLATION
+  VA  3: 0x000002f1 (decimal:  753) --> SEGMENTATION VIOLATION
+  VA  4: 0x000002ad (decimal:  685) --> SEGMENTATION VIOLATION
