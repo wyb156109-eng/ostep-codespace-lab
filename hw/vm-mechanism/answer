@@ -52,3 +52,10 @@ Virtual Address Trace
   VA  2: 0x00000357 (decimal:  855) --> SEGMENTATION VIOLATION
   VA  3: 0x000002f1 (decimal:  753) --> SEGMENTATION VIOLATION
   VA  4: 0x000002ad (decimal:  685) --> SEGMENTATION VIOLATION
+
+
+Q1: Completed above (ran relocation.py with seeds 0, 1, 2 and -c flag).
+Q2: With -s 0 -n 10, the maximum virtual address generated is 929. So -l (bounds limit) must be set to 930 for all generated virtual addresses to be within bounds (-l 929 leaves one violation, -l 930 makes all ten valid).
+Q3: With -s 1 -n 10 -l 100 (default physical memory 16KB = 16384), the maximum base register value is 16384 - 100 = 16284. (16285 causes "address space does not fit into physical memory").
+Q4: With larger address spaces (-a 4k -p 64k), the same relationship holds: max_base = phys_mem_size - limit.
+Q5: The fraction of valid randomly generated virtual addresses is roughly (limit / address_space_size), which forms a straight linear line from 0% (when limit = 0) to 100% (when limit = 1024).
