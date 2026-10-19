@@ -57,3 +57,23 @@ Virtual Address Trace
   VA  2: 0x0000013b (decimal:  315) --> VALID in SEG0: 0x000004d9 (decimal: 1241)
   VA  3: 0x0000026c (decimal:  620) --> VALID in SEG1: 0x000035d6 (decimal: 13782)
   VA  4: 0x0000026d (decimal:  621) --> VALID in SEG1: 0x000035d7 (decimal: 13783)
+
+
+ (Q1 - Q5) 
+Q1 (-a 128 -p 512 -b 0 -l 20 -B 512 -L 20):
+  Seed 1 results:
+  VA 0: 17  --> VALID in SEG0: 37
+  VA 1: 108 --> VALID in SEG1: 492
+  VA 2: 97  --> SEGMENTATION VIOLATION (SEG1)
+  VA 3: 32  --> SEGMENTATION VIOLATION (SEG0)
+  VA 4: 63  --> SEGMENTATION VIOLATION (SEG0)
+Q2: 
+  - Highest legal VA in Segment 0: 19 (VALID -> PA 19)
+  - Lowest legal VA in Segment 1: 108 (VALID -> PA 492)
+  - Lowest illegal VA: 20 (VIOLATION)
+  - Highest illegal VA: 107 (VIOLATION)
+  - Verified with: ./segmentation.py -a 128 -p 512 -b 0 -l 20 -B 512 -L 20 -A 19,20,107,108,127 -c
+Q3: For a 16-byte address space in 128-byte physical memory to give valid, valid, violation, ..., violation, valid, valid for VA 0-15:
+  Set --l0 2 and --l1 2 (so VA 0, 1 are valid in Seg 0, and VA 14, 15 are valid in Seg 1).
+Q4: To make roughly 90% of randomly generated VAs valid, the two limits must sum to ~90% of the address space size (e.g., for -a 128, set -l 58 -L 58, since 116/128 = 90.6%).
+Q5: To make NO virtual addresses valid (0% valid), set both limits to 0: -l 0 -L 0.
